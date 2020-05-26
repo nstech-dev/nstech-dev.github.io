@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/syntax.css">
+  <title>{{ page.title }}</title>
+</head>
+<body class="theme-dark">
+  <div class="contents-warpper">
+    <sidebar class="sidebar-box">
+      {% assign main_page = site.html_pages | where: "path", "docs/index.md" | first -%}
+      {% assign dir_name = page.path | split: '/' | slice: 0, 2 | join: "/" | append: '/' | prepend: '/' -%}
+      {% assign dir_page = site.html_pages | where: "url", dir_name | first -%}
+      <ul class="index-box">
+        <li><a href="{{ site.url }}">{{ main_page.title }}</a></li>
+        {% if dir_page.url == page.url -%}
+        <li class="active"><a>{{ dir_page.title }}</a></li>
+        {% else  -%}
+        <li><a href="{{ dir_page.url }}">{{ dir_page.title }}</a></li>
+        {% endif  -%}
+        {% for page_name in dir_page.toc -%}
+        {% assign page_url = dir_name | append: page_name | append: "/" -%}
+        {% assign page_item = site.html_pages | where: "url", page_url | first -%}
+        {% if page_item.url == page.url -%}
+        <li class="active" ><a>{{ page_item.title }}</a></li>
+        {% else  -%}
+        <li><a href="{{ page_item.url }}">{{ page_item.title }}</a></li>
+        {% endif  -%}
+        {% endfor %}
+      </ul>
+    </sidebar>
+    <div class="article-box">
+      {{ content }}
+    </div>
+  </div>
+</body>
+</html>

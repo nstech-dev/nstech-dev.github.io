@@ -1,0 +1,93 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "theme-fonts";
+@import "theme-colors";
+@import "theme-layouts";
+
+
+$z-depth-list: 1,2,3,4,5;
+@each $z-depth in $z-depth-list {
+  .shadow-dp-#{$z-depth} {
+    @include material-shadow($z-depth);
+  }
+}
+
+.inline-button {
+  display: inline-block;
+  margin: auto;
+  padding: 8px 15px;
+  border-width: 0;
+  outline: none;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 2px;
+  @include material-shadow(1);
+}
+
+.article-box {
+  margin: 10px auto;
+  max-width: 850px;
+  padding: 15px;
+  border-radius: 2px;
+  line-height: 1.5;
+  letter-spacing: .06rem;
+  @include material-shadow(1);
+  h1 {
+    margin-top: 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid;
+  }
+  h2 {
+    margin: 1em 0 0.2em 0;
+  }
+}
+.index-box {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    padding: 15px 5px;
+    border-width: 1px;
+    border-style: solid;
+  }
+}
+
+.contents-warpper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas: "sidebar contents";
+  min-height: 100vh;
+  .sidebar-box {
+    grid: "sidebar";
+    @include material-shadow(1);
+  }
+  .article-box {
+    grid: "contents";
+    width: 850px;
+  }
+}
+
+.contents-card {
+  width: 450px;
+  aspect-ratio: 2;
+  display: grid;
+  grid-template-rows:
+    1fr minmax(max-content, auto) minmax(max-content, auto);
+  @include material-shadow(2);
+  .title-box {
+    padding: 5px;
+    background-position: center;
+    background-size: cover;
+    text-shadow: 1px 1px #000;
+  }
+  .desc-box {
+    padding: 5px;
+    line-height: 1em;
+    min-height: 3em;
+  }
+  .tool-box {
+    padding: 5px;
+    text-align: right;
+  }
+}

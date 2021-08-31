@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Jekyll Serve",
+			"type": "shell",
+			"command": "bundle exec jekyll serve"
+		},
+		{
+			"label": "Typescript Watch",
+			"type": "typescript",
+			"tsconfig": "tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			]
+		},
+		{
+			"label": "Build",
+			"dependsOn": [
+				"Jekyll Serve"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/style.css">
+  <title>NSTech 개발자 문서</title>
+</head>
+<body class="theme-dark">
+  {% assign main_page = site.html_pages | where: "path", "docs/index.md" | first -%}
+  <div class="article-box">
+    {{ main_page.content }}
+  </div>
+  <div class="layout-flexbox">
+    {% for toc_item in main_page.toc -%}
+    {% assign page_path = "docs/" | append: toc_item | append: '/index.md' -%}
+    {% assign page_item = site.html_pages | where: "path", page_path | first -%}
+    {% assign cover_path = page_item.url | append: page_item.background -%}
+    <div class="contents-card">
+      <div class="title-box" style="background-image: url('{{ cover_path }}');">
+        <h2 class="title">{{ page_item.title }}</h2>
+      </div>
+      <div class="desc-box">{{ page_item.summary }}</div>
+      <div class="tool-box">
+        <a class="inline-button" href="{{ page_item.url }}">
+          > 시작하기
+        </a>
+      </div>
+    </div>
+    {% endfor -%}
+  </div>
+</body>
+</html>

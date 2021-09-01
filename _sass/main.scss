@@ -4,33 +4,14 @@
 @import "theme-fonts";
 @import "theme-colors";
 @import "theme-layouts";
-
-
-$z-depth-list: 1,2,3,4,5;
-@each $z-depth in $z-depth-list {
-  .shadow-dp-#{$z-depth} {
-    @include material-shadow($z-depth);
-  }
-}
-
-.inline-button {
-  display: inline-block;
-  margin: auto;
-  padding: 8px 15px;
-  border-width: 0;
-  outline: none;
-  overflow: hidden;
-  text-decoration: none;
-  border-radius: 2px;
-  @include material-shadow(1);
-}
+@import "theme-conponents.scss";
 
 .article-box {
   margin: 10px auto;
   max-width: 850px;
   padding: 15px;
   border-radius: 2px;
-  line-height: 1.5;
+  line-height: 1.6;
   letter-spacing: .06rem;
   @include material-shadow(1);
   h1 {
@@ -39,7 +20,35 @@ $z-depth-list: 1,2,3,4,5;
     border-bottom: 1px solid;
   }
   h2 {
-    margin: 1em 0 0.2em 0;
+    margin: 2.5em 0 0.2em 0;
+  }
+  blockquote {
+    padding: 5px 10px;
+    margin-left: 0.5em;
+    border-radius: 2px;
+    border-left: 0.8em solid;
+  }
+  kbd {
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    border-radius: 2px;
+    color: #333;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+   }
+  p > code, li > code {
+    display: inline-block;
+    padding: 3px 5px;
+    line-height: 1;
+    border-radius: 2px;
+  }
+  .highlighter-rouge .highlight {
+    overflow-y: auto;
   }
 }
 .index-box {
@@ -47,6 +56,7 @@ $z-depth-list: 1,2,3,4,5;
   margin: 0;
   padding: 0;
   li {
+    margin-bottom: -1px;
     padding: 15px 5px;
     border-width: 1px;
     border-style: solid;

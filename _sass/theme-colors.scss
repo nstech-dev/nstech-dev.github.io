@@ -24,6 +24,14 @@ body.theme-dark {
     h1, h2, h3 {
       color: material-color('blue-gray', '50');
     }
+    blockquote {
+      background-color: material-color($background, '600');
+      border-color: material-color($primary, '500');
+    }
+    p > code, li > code {
+      background-color: material-color($background, '900');
+      color: material-color($secondary, '300');
+    }
   }
   .index-box {
     li.active {
